@@ -1,0 +1,4 @@
+.idea
+*.iml
+
+editor-db.sqlite3
