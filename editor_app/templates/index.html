@@ -1,0 +1,39 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>Edytor formuł matematycznych</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+		<script>
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']]
+				},
+				svg: {
+					fontCache: 'global'
+				}
+			};
+
+			timeout = null;
+			function OnFormulaChanged() {
+				if (timeout)
+					clearTimeout(timeout)
+				timeout = setTimeout(UpdateFormulaPreview, 10)
+			}
+
+			function UpdateFormulaPreview() {
+				document.querySelector('#editor > div').textContent = document.querySelector('#editor > textarea').value;
+				MathJax.typeset();
+				timeout = null;
+			}
+		</script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	</head>
+	<body>
+		<section id="editor">
+			<textarea placeholder="Wprowadź formułę" onkeyup="OnFormulaChanged()">{% if formula %}{{ formula }}{% endif %}</textarea>
+			<div>{% if formula %}{{ formula }}{% endif %}</div>
+		</section>
+	</body>
+</html>

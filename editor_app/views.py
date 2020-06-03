@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from editor_app.models import Formula
 
 
 def index(request):
-	return HttpResponse("Hello")
+	formula = Formula.objects.first()
+	return render(request, 'index.html', {'formula': formula})

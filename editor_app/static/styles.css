@@ -1,0 +1,39 @@
+body {
+	margin: 0;
+}
+
+body * {
+	display: block;
+	position: relative;
+}
+
+#editor {
+	display: flex;
+	height: 100%;
+	font-size: 1.2em;
+	font-family: "Courier", monospace;
+}
+
+#editor > textarea {
+	resize: none;
+	border: none;
+	background-color: #222;
+	color: #FFF;
+}
+
+#editor > textarea:focus {
+	outline: none;
+}
+
+#editor > div {
+	background-color: #cddae4;
+	color: #00192f;
+}
+
+#editor > * {
+	width: 50%;
+	height: 100%;
+	font: inherit;
+	padding: 1em;
+	box-sizing: border-box;
+}
