@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
 	path('', views.index, name='index'),
+	path('edit/<int:formula_id>/', views.editor, name='editor'),
 ]

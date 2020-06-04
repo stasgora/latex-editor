@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Formula(models.Model):
-	text = models.TextField(verbose_name='Mathematical formula written in plain Latex')
+	title = models.TextField(default='', verbose_name='Tytuł formuły')
+	text = models.TextField(verbose_name='Formuła matematyczna w języku Latex')
 
 	def __str__(self):
-		return self.text
+		return self.title + ': ' + self.text

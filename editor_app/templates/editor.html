@@ -1,7 +1,9 @@
 {% load static %}
 
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 	<head>
+		<meta charset="UTF-8">
 		<title>Edytor formuł matematycznych</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 		<script>
@@ -32,8 +34,8 @@
 	</head>
 	<body>
 		<section id="editor">
-			<textarea placeholder="Wprowadź formułę" onkeyup="OnFormulaChanged()">{% if formula %}{{ formula }}{% endif %}</textarea>
-			<div>{% if formula %}{{ formula }}{% endif %}</div>
+			<textarea placeholder="Wprowadź formułę" onkeyup="OnFormulaChanged()">{% if formula.text %}{{ formula.text }}{% endif %}</textarea>
+			<div>{% if formula.text %}{{ formula.text }}{% endif %}</div>
 		</section>
 		<section>
 			<button>Odrzuć</button>
