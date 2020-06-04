@@ -49,11 +49,14 @@ section:nth-of-type(2) {
 	justify-content: center;
 }
 
+input {
+	border: 0;
+	outline: 0;
+}
+
 section:nth-of-type(2) > * {
 	margin: 1em 2em;
 	padding: .4em .8em;
-	border: 0;
-	outline: 0;
 	cursor: pointer;
 	border-radius: 4px;
 	font-size: 1em;
@@ -70,4 +73,14 @@ section:nth-of-type(2) > *:last-child {
 
 section:nth-of-type(2) > *:not(:active):hover {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+form > #title {
+	padding: .4em .8em;
+	font-size: 1.2em;
+	font-family: "Courier", monospace;
+	text-align: center;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #9eacb7;
 }

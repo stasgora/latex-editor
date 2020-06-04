@@ -21,7 +21,8 @@ def save(request):
 	if id is not '':
 		formula, _ = Formula.objects.get_or_create(id=id)
 		formula.text = request.POST['text']
+		formula.title = request.POST['title']
 		formula.save()
 	else:
-		Formula.objects.create(text=request.POST['text'])
+		Formula.objects.create(text=request.POST['text'], title=request.POST['title'])
 	return redirect('home')
