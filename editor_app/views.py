@@ -4,6 +4,10 @@ from editor_app.models import Formula
 
 
 def index(request):
+	return render(request, 'index.html')
+
+
+def home(request):
 	return render(request, 'home.html')
 
 
@@ -12,8 +16,12 @@ def editor(request, formula_id):
 	return render(request, 'editor.html', {'formula': formula})
 
 
-def save(request, formula_id):
-	formula, _ = Formula.objects.get_or_create(id=formula_id)
-	formula.text = request.POST['text']
-	formula.save()
-	return redirect('/')
+def save(request):
+	id = request.POST['id']
+	if id is not '':
+		formula, _ = Formula.objects.get_or_create(id=id)
+		formula.text = request.POST['text']
+		formula.save()
+	else:
+		Formula.objects.create(text=request.POST['text'])
+	return redirect('home')

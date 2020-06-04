@@ -4,7 +4,7 @@
 <html lang="pl">
 	<head>
 		<meta charset="UTF-8">
-		<title>Edytor formuł matematycznych</title>
+		<title>Edycja formuły</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 		<script>
 			MathJax = {
@@ -33,16 +33,17 @@
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
-		<form action="{% url 'save' formula.id %}" method="post">
+		<form action="{% url 'save' %}" method="post">
 			{% csrf_token %}
 			<section id="editor">
-				<textarea placeholder="Wprowadź formułę" name="text" onkeyup="OnFormulaChanged()">{% if formula.text %}{{ formula.text }}{% endif %}</textarea>
-				<div>{% if formula.text %}{{ formula.text }}{% endif %}</div>
+				<textarea placeholder="Wprowadź formułę" name="text" onkeyup="OnFormulaChanged()">{{ formula.text }}</textarea>
+				<div>{{ formula.text }}</div>
 			</section>
 			<section>
-				<a href="/">Odrzuć</a>
+				<a href="/home">Odrzuć</a>
 				<input type="submit" value="Zapisz"/>
 			</section>
+			<input type="hidden" name="id" value="{{ formula.id }}">
 		</form>
 	</body>
 </html>
