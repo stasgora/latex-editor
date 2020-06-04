@@ -1,17 +1,19 @@
-from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from editor_app.models import Formula
 
 
 def index(request):
-	formula = Formula.objects.first()
 	return render(request, 'home.html')
 
 
 def editor(request, formula_id):
-	try:
-		formula = Formula.objects.get(id=formula_id)
-	except Formula.DoesNotExist:
-		raise Http404('Formuła nie istnieje')
+	formula = get_object_or_404(Formula, id=formula_id)
 	return render(request, 'editor.html', {'formula': formula})
+
+
+def save(request, formula_id):
+	formula, _ = Formula.objects.get_or_create(id=formula_id)
+	formula.text = request.POST['text']
+	formula.save()
+	return redirect('/')

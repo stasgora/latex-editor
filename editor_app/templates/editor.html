@@ -33,13 +33,16 @@
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
-		<section id="editor">
-			<textarea placeholder="Wprowadź formułę" onkeyup="OnFormulaChanged()">{% if formula.text %}{{ formula.text }}{% endif %}</textarea>
-			<div>{% if formula.text %}{{ formula.text }}{% endif %}</div>
-		</section>
-		<section>
-			<button>Odrzuć</button>
-			<button>Zapisz</button>
-		</section>
+		<form action="{% url 'save' formula.id %}" method="post">
+			{% csrf_token %}
+			<section id="editor">
+				<textarea placeholder="Wprowadź formułę" name="text" onkeyup="OnFormulaChanged()">{% if formula.text %}{{ formula.text }}{% endif %}</textarea>
+				<div>{% if formula.text %}{{ formula.text }}{% endif %}</div>
+			</section>
+			<section>
+				<a href="/">Odrzuć</a>
+				<input type="submit" value="Zapisz"/>
+			</section>
+		</form>
 	</body>
 </html>
