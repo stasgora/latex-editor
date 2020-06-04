@@ -16,6 +16,10 @@ def editor(request, formula_id):
 	return render(request, 'editor.html', {'formula': formula})
 
 
+def new(request):
+	return render(request, 'editor.html', {'formula': {'title': '', 'text': ''}})
+
+
 def save(request):
 	id = request.POST['id']
 	if id is not '':
