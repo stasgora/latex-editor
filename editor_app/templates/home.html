@@ -5,6 +5,9 @@
 		<title>Profil</title>
 	</head>
 	<body>
-		
+		<form action="{% url 'logout' %}" method="post">
+			{% csrf_token %}
+			<input type="submit" value="Wyloguj"/>
+		</form>
 	</body>
 </html>

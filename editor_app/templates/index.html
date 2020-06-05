@@ -5,6 +5,17 @@
 		<title>Edytor formuł matematycznych</title>
 	</head>
 	<body>
-		
+		{% if messages %}
+			{% for message in messages %}
+				<span{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+			{% endfor %}
+		{% endif %}
+		<form action="{% url 'auth' %}" method="post">
+			{% csrf_token %}
+			<input type="text" name="username">
+			<input type="text" name="password">
+			<input type="submit" name="singIn" value="Stwórz konto"/>
+			<input type="submit" name="logIn" value="Zaloguj"/>
+		</form>
 	</body>
 </html>
