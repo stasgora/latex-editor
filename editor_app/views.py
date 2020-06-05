@@ -14,7 +14,8 @@ def index(request):
 def home(request):
 	if not request.user.is_authenticated:
 		return redirect('/')
-	return render(request, 'home.html')
+	formulas = Formula.objects.filter(owner=request.user)
+	return render(request, 'home.html', {'formulas': formulas})
 
 
 def editor(request, formula_id):
@@ -40,7 +41,7 @@ def save(request):
 		formula.title = request.POST['title']
 		formula.save()
 	else:
-		Formula.objects.create(text=request.POST['text'], title=request.POST['title'])
+		Formula.objects.create(text=request.POST['text'], title=request.POST['title'], owner=request.user)
 	return redirect('home')
 
 

@@ -1,13 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>Edytor formuł matematycznych</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'global-styles.css' %}">
 	</head>
 	<body>
 		{% if messages %}
 			{% for message in messages %}
-				<span{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+				<span class="msg-{{ message.tags }}">{{ message }}</span>
 			{% endfor %}
 		{% endif %}
 		<form action="{% url 'auth' %}" method="post">

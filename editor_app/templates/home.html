@@ -1,13 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pl">
 	<head>
 		<meta charset="UTF-8">
 		<title>Profil</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'global-styles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home-styles.css' %}">
+		<script>
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']]
+				},
+				svg: {
+					fontCache: 'global'
+				}
+			};
+		</script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
 		<form action="{% url 'logout' %}" method="post">
 			{% csrf_token %}
 			<input type="submit" value="Wyloguj"/>
 		</form>
+		<section id="formulas">
+			{% for formula in formulas %}
+				<div>
+					<div>{{ formula.title }}</div>
+					<div>{{ formula.text }}</div>
+				</div>
+			{% endfor %}
+		</section>
 	</body>
 </html>

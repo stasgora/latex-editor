@@ -1,0 +1,13 @@
+#formulas {
+	padding: 1em;
+}
+
+#formulas > div {
+	display: flex;
+}
+
+#formulas > div > div {
+	background-color: #9eacb7;
+	margin: .4em;
+	padding: .4em;
+}
