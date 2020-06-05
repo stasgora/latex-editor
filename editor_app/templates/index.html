@@ -17,6 +17,7 @@
 			{% csrf_token %}
 			<input type="text" name="username">
 			<input type="text" name="password">
+			<input type="hidden" name="next" value="{{ request.GET.next }}" />
 			<input type="submit" name="singIn" value="Stwórz konto"/>
 			<input type="submit" name="logIn" value="Zaloguj"/>
 		</form>

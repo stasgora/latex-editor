@@ -1,8 +1,9 @@
 import django
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
 from editor_app.models import Formula
 
@@ -11,29 +12,29 @@ def index(request):
 	return render(request, 'index.html')
 
 
+@login_required
 def home(request):
-	if not request.user.is_authenticated:
-		return redirect('/')
 	formulas = Formula.objects.filter(owner=request.user)
 	return render(request, 'home.html', {'formulas': formulas})
 
 
+@login_required
 def editor(request, formula_id):
-	if not request.user.is_authenticated:
-		return redirect('/')
-	formula = get_object_or_404(Formula, id=formula_id)
+	try:
+		formula = Formula.objects.get(id=formula_id, owner=request.user)
+	except Formula.DoesNotExist:
+		messages.add_message(request, messages.ERROR, 'Nie znaleziono formuły')
+		return redirect('home')
 	return render(request, 'editor.html', {'formula': formula})
 
 
+@login_required
 def new(request):
-	if not request.user.is_authenticated:
-		return redirect('/')
 	return render(request, 'editor.html', {'formula': {'title': '', 'text': ''}})
 
 
+@login_required
 def save(request):
-	if not request.user.is_authenticated:
-		return redirect('/')
 	id = request.POST['id']
 	if id != '':
 		formula, _ = Formula.objects.get_or_create(id=id)
@@ -49,21 +50,20 @@ def auth(request):
 	if 'singIn' in request.POST:
 		if not User.objects.filter(username=request.POST['username']).exists():
 			User.objects.create_user(request.POST['username'], password=request.POST['password'])
-			return redirect('home')
+			return redirect(request.POST.get('next', 'home'))
 		else:
 			messages.add_message(request, messages.ERROR, 'Nazwa użytkownika zajęta')
 	elif 'logIn' in request.POST:
 		user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
 			login(request, user)
-			return redirect('home')
+			return redirect(request.POST.get('next', 'home'))
 		else:
 			messages.add_message(request, messages.ERROR, 'Niepoprawne dane logowania')
 	return redirect('/')
 
 
+@login_required
 def logout(request):
-	if not request.user.is_authenticated:
-		return redirect('/')
 	django.contrib.auth.logout(request)
 	return redirect('/')
