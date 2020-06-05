@@ -22,7 +22,7 @@ def new(request):
 
 def save(request):
 	id = request.POST['id']
-	if id is not '':
+	if id != '':
 		formula, _ = Formula.objects.get_or_create(id=id)
 		formula.text = request.POST['text']
 		formula.title = request.POST['title']
