@@ -47,17 +47,21 @@ def save(request):
 
 
 def auth(request):
-	if 'singIn' in request.POST:
+	redirect_path = request.POST['next'] if ('next' in request.POST and request.POST['next']) else 'home'
+
+	if not request.POST['username'] or not request.POST['password']:
+		messages.add_message(request, messages.ERROR, 'Wpisz dane logowania')
+	elif 'singIn' in request.POST:
 		if not User.objects.filter(username=request.POST['username']).exists():
 			User.objects.create_user(request.POST['username'], password=request.POST['password'])
-			return redirect(request.POST.get('next', 'home'))
+			return redirect(redirect_path)
 		else:
 			messages.add_message(request, messages.ERROR, 'Nazwa użytkownika zajęta')
 	elif 'logIn' in request.POST:
 		user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
 			login(request, user)
-			return redirect(request.POST.get('next', 'home'))
+			return redirect(redirect_path)
 		else:
 			messages.add_message(request, messages.ERROR, 'Niepoprawne dane logowania')
 	return redirect('/')

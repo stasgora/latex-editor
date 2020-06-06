@@ -6,20 +6,25 @@
 		<meta charset="UTF-8">
 		<title>Edytor formuł matematycznych</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'global-styles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'index-styles.css' %}">
 	</head>
 	<body>
-		{% if messages %}
-			{% for message in messages %}
-				<span class="msg-{{ message.tags }}">{{ message }}</span>
-			{% endfor %}
-		{% endif %}
-		<form action="{% url 'auth' %}" method="post">
-			{% csrf_token %}
-			<input type="text" name="username">
-			<input type="text" name="password">
-			<input type="hidden" name="next" value="{{ request.GET.next }}" />
-			<input type="submit" name="singIn" value="Stwórz konto"/>
-			<input type="submit" name="logIn" value="Zaloguj"/>
-		</form>
+		<section>
+			<form action="{% url 'auth' %}" method="post">
+				{% if messages %}
+					{% for message in messages %}
+						<span class="msg-{{ message.tags }}">{{ message }}</span>
+					{% endfor %}
+				{% endif %}
+				{% csrf_token %}
+				<input type="text" placeholder="Nazwa użytkownika" name="username" class="field input">
+				<input type="password" placeholder="Hasło" name="password" class="field input">
+				<input type="hidden" name="next" value="{{ request.GET.next }}" />
+				<div>
+					<input type="submit" name="singIn" value="Stwórz konto" class="field button"/>
+					<input type="submit" name="logIn" value="Zaloguj" class="field button"/>
+				</div>
+			</form>
+		</section>
 	</body>
 </html>

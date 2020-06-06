@@ -1,0 +1,38 @@
+body {
+	background-color: #172a4a;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+}
+
+section {
+	margin: auto 0;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+form input {
+	margin: .6em;
+}
+
+form > input[type=text], form > input[type=password] {
+	width: 22em;
+}
+
+form input[type=submit]:first-child {
+	background-color: #1139b1;
+	color: white;
+}
+
+form input[type=submit]:last-child {
+	background-color: #0567e8;
+	color: white;
+}
+
+form > div {
+	display: flex;
+}

@@ -28,7 +28,7 @@
 		{% endif %}
 		<form action="{% url 'logout' %}" method="post">
 			{% csrf_token %}
-			<input type="submit" value="Wyloguj"/>
+			<input type="submit" value="Wyloguj" class="field button"/>
 		</form>
 		<section id="formulas">
 			{% for formula in formulas %}
