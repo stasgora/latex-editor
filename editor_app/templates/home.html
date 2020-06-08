@@ -33,13 +33,41 @@
 				<span class="msg-{{ message.tags }}">{{ message }}</span>
 			{% endfor %}
 		{% endif %}
-		<section id="formulas">
-			{% for formula in formulas %}
-				<div>
-					<div>{{ formula.title }}</div>
-					<div>{{ formula.text }}</div>
-				</div>
-			{% endfor %}
-		</section>
+		<div>
+			{% if formulas %}
+			<section class="formulas">
+				<span>Moje wyrażenia</span>
+				{% for formula in formulas %}
+					<a href="/edit/{{ formula.id }}/" class="formula">
+						<div>
+							<span>Tytuł:</span>
+							{{ formula.title }}
+						</div>
+						<div>
+							<span>Treść:</span>
+							{{ formula.text }}
+						</div>
+					</a>
+				{% endfor %}
+			</section>
+			{% endif %}
+			{% if other_formulas %}
+				<section class="formulas">
+					<span>Zarządzanie wyrażeniami</span>
+					{% for formula in other_formulas %}
+						<div class="formula">
+							<div>
+								<span>Tytuł:</span>
+								{{ formula.title }}
+							</div>
+							<div>
+								<span>Treść:</span>
+								{{ formula.text }}
+							</div>
+						</div>
+					{% endfor %}
+				</section>
+			{% endif %}
+		</div>
 	</body>
 </html>

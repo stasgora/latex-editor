@@ -16,8 +16,9 @@ def index(request):
 @login_required
 def home(request):
 	is_user_moderator = request.user.groups.filter(name='Moderatorzy').exists() or request.user.is_superuser
-	formulas = Formula.objects.filter(Q() if is_user_moderator else Q(owner=request.user))
-	return render(request, 'home.html', {'formulas': formulas})
+	formulas = Formula.objects.filter(Q(owner=request.user))
+	other_formulas = Formula.objects.filter(~Q(owner=request.user)) if is_user_moderator else []
+	return render(request, 'home.html', {'formulas': formulas, 'other_formulas': other_formulas})
 
 
 @login_required
