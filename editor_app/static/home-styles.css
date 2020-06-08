@@ -25,6 +25,7 @@ body > section:first-of-type > span {
 
 body > div:first-of-type {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	margin: 1em 10% 0;
 }
@@ -67,6 +68,21 @@ body > div:first-of-type {
 }
 
 .formula > div:first-of-type {
-	margin-right: 1em;
 	width: 20%;
+}
+
+.formula > div:not(:last-child) {
+	margin-right: 1em;
+}
+
+.formula > .content {
+	flex-grow: 1;
+}
+
+.formula input {
+	border: 2px solid #ca0000;
+	border-radius: 4px;
+	color: white;
+	font-weight: bold;
+	background-color: #ff0000e3;
 }
