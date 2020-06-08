@@ -1,3 +1,19 @@
+section:first-of-type {
+	width: 100%;
+	display: flex;
+	padding: .5em .8em;
+	box-sizing: border-box;
+	background-color: #0567e8;
+	justify-content: space-between;
+}
+
+section:first-of-type > span {
+	display: inline-flex;
+	align-items: center;
+	align-content: center;
+	color: white;
+}
+
 #formulas {
 	padding: 1em;
 }

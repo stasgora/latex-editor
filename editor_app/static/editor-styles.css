@@ -6,7 +6,7 @@ form {
 	display: flex;
 	height: calc(100% - 2em);
 	font-size: 1.2em;
-	font-family: "Courier", monospace;
+	font-family: monospace, monospace;
 }
 
 #editor > textarea {
@@ -54,7 +54,7 @@ section:nth-of-type(2) > *:last-child {
 form > #title {
 	padding: .4em .8em;
 	font-size: 1.2em;
-	font-family: "Courier", monospace;
+	font-family: monospace, monospace;
 	text-align: center;
 	width: 100%;
 	box-sizing: border-box;

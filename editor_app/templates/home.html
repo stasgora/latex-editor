@@ -21,15 +21,18 @@
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
+		<section>
+			<span>Użytkownik:&nbsp;&nbsp;<strong>{{ request.user.username }}</strong></span>
+			<form action="{% url 'logout' %}" method="post">
+				{% csrf_token %}
+				<input type="submit" value="Wyloguj" class="field button"/>
+			</form>
+		</section>
 		{% if messages %}
 			{% for message in messages %}
 				<span class="msg-{{ message.tags }}">{{ message }}</span>
 			{% endfor %}
 		{% endif %}
-		<form action="{% url 'logout' %}" method="post">
-			{% csrf_token %}
-			<input type="submit" value="Wyloguj" class="field button"/>
-		</form>
 		<section id="formulas">
 			{% for formula in formulas %}
 				<div>

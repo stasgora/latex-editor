@@ -11,6 +11,7 @@
 	<body>
 		<section>
 			<form action="{% url 'auth' %}" method="post">
+				<div>Edytor Latex</div>
 				{% if messages %}
 					{% for message in messages %}
 						<span class="msg-{{ message.tags }}">{{ message }}</span>
