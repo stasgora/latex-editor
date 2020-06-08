@@ -35,4 +35,5 @@ form input[type=submit]:last-child {
 
 form > div {
 	display: flex;
+	margin: 1em;
 }

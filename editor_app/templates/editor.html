@@ -4,7 +4,7 @@
 <html lang="pl">
 	<head>
 		<meta charset="UTF-8">
-		<title>Edycja formuły</title>
+		<title>Edycja wyrażenia</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'global-styles.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'editor-styles.css' %}">
 		<script>
@@ -38,7 +38,7 @@
 			{% csrf_token %}
 			<input type="text" name="title" id="title" placeholder="Tytuł" value="{{ formula.title }}">
 			<section id="editor">
-				<textarea placeholder="Wprowadź formułę" name="text" onkeyup="OnFormulaChanged()">{{ formula.text }}</textarea>
+				<textarea placeholder="Wprowadź wyrażenie" name="text" onkeyup="OnFormulaChanged()">{{ formula.text }}</textarea>
 				<div>{{ formula.text }}</div>
 			</section>
 			<section>

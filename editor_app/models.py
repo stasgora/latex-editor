@@ -4,8 +4,8 @@ from django.db import models
 
 class Formula(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
-	title = models.TextField(default='', verbose_name='Tytuł formuły')
-	text = models.TextField(verbose_name='Formuła matematyczna w języku Latex')
+	title = models.TextField(default='', verbose_name='Tytuł wyrażenia')
+	text = models.TextField(verbose_name='Wyrażenie matematyczna w języku Latex')
 
 	@classmethod
 	def create(cls, title, text):
