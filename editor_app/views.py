@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from editor_app.models import Formula
@@ -14,7 +15,8 @@ def index(request):
 
 @login_required
 def home(request):
-	formulas = Formula.objects.filter(owner=request.user)
+	is_user_moderator = request.user.groups.filter(name='Moderatorzy').exists() or request.user.is_superuser
+	formulas = Formula.objects.filter(Q() if is_user_moderator else Q(owner=request.user))
 	return render(request, 'home.html', {'formulas': formulas})
 
 
