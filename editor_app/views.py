@@ -49,7 +49,8 @@ def save(request):
 	return redirect('home')
 
 
-def remove(request, id):
+def remove(request, formula_id):
+	Formula.objects.get(id=formula_id).delete()
 	return redirect('home')
 
 

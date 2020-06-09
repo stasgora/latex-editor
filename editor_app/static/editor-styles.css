@@ -2,6 +2,24 @@ form {
 	height: 100%;
 }
 
+.top-bar {
+	background-color: #0567e8;
+}
+
+.top-bar > #title {
+	font-size: 1.2em;
+	font-family: monospace, monospace;
+	width: 100%;
+	color: white;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: transparent;
+}
+
+.top-bar > #title::placeholder {
+	color: #ddd;
+}
+
 #editor {
 	display: flex;
 	height: calc(100% - 2em);
@@ -31,7 +49,7 @@ form {
 	box-sizing: border-box;
 }
 
-section:nth-of-type(2) {
+#navigation {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
@@ -39,24 +57,15 @@ section:nth-of-type(2) {
 	justify-content: center;
 }
 
-section:nth-of-type(2) > * {
+#navigation > * {
 	margin: 1em 2em;
 	cursor: pointer;
 	text-decoration: none;
+	fill: #222;
+	background-color: #cddae4;
 }
 
-
-section:nth-of-type(2) > *:last-child {
+#navigation > *:last-child {
 	background-color: #222;
-	color: #cddae4;
-}
-
-form > #title {
-	padding: .4em .8em;
-	font-size: 1.2em;
-	font-family: monospace, monospace;
-	text-align: center;
-	width: 100%;
-	box-sizing: border-box;
-	background-color: #9eacb7;
+	fill: #cddae4;
 }
