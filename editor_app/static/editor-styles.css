@@ -16,7 +16,7 @@ form {
 	background-color: transparent;
 }
 
-.top-bar > #title::placeholder {
+*::placeholder {
 	color: #ddd;
 }
 
@@ -30,14 +30,14 @@ form {
 #editor > textarea {
 	resize: none;
 	border: none;
-	background-color: #222;
+	background-color: #172a4a;
 	color: #FFF;
 	outline: 0;
 }
 
 #editor > div, section:nth-of-type(2) > *:first-child {
 	background-color: #cddae4;
-	color: #222;
+	color: #172a4a;
 }
 
 #editor > * {
@@ -60,11 +60,11 @@ form {
 #navigation > * {
 	margin: 1em 2em;
 	text-decoration: none;
-	fill: #222;
+	fill: #172a4a;
 	background-color: #cddae4;
 }
 
 #navigation > *:last-child {
-	background-color: #222;
+	background-color: #172a4a;
 	fill: #cddae4;
 }
