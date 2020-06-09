@@ -62,6 +62,8 @@ def auth(request):
 	elif 'singIn' in request.POST:
 		if not User.objects.filter(username=request.POST['username']).exists():
 			User.objects.create_user(request.POST['username'], password=request.POST['password'])
+			user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+			login(request, user)
 			return redirect(redirect_path)
 		else:
 			messages.add_message(request, messages.ERROR, 'Nazwa użytkownika zajęta')

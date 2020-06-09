@@ -45,6 +45,7 @@ input[type=submit] {
 	fill: white;
 	padding: .2em;
 	border-radius: 4px;
+	cursor: pointer;
 }
 
 .top-bar {
