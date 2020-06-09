@@ -37,3 +37,12 @@ input[type=submit] {
 .input:focus {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+.icon {
+	border-width: 0;
+	outline-width: 0;
+	box-sizing: border-box;
+	fill: white;
+	padding: .2em;
+	border-radius: 4px;
+}

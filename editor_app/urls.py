@@ -11,4 +11,5 @@ urlpatterns = [
 	path('new/', views.new, name='new'),
 	path('edit/<int:formula_id>/', views.editor, name='editor'),
 	path('save/', views.save, name='save'),
+	path('remove/<int:formula_id>/', views.remove, name='remove'),
 ]

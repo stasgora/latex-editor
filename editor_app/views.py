@@ -49,6 +49,10 @@ def save(request):
 	return redirect('home')
 
 
+def remove(request, id):
+	return redirect('home')
+
+
 def auth(request):
 	redirect_path = request.POST['next'] if ('next' in request.POST and request.POST['next']) else 'home'
 

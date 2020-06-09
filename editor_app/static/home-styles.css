@@ -4,7 +4,7 @@ body {
 
 body > section:first-of-type {
 	width: 100%;
-	padding: .5em .8em;
+	padding: .5em 10%;
 	box-sizing: border-box;
 
 	display: flex;
@@ -23,6 +23,25 @@ body > section:first-of-type > span {
 	font-size: 1.1em;
 }
 
+body > section:first-of-type > div {
+	display: flex;
+}
+
+body > section:first-of-type > div * {
+	background-color: #eff4fb;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+body > section:first-of-type > div svg {
+	fill: #0567e8;
+	transform: rotate(180deg);
+}
+
+body > section:first-of-type a {
+	margin-right: .8em;
+}
+
 body > div:first-of-type {
 	display: flex;
 	flex-direction: column;
@@ -31,20 +50,20 @@ body > div:first-of-type {
 }
 
 .formulas > span:first-child {
+	color: #011f4c;
 	font-size: 1.1em;
-	margin-bottom: 1em;
+	margin: 1em 0;
 	text-align: center;
 }
 
 .formulas {
-	padding: 1em;
 	flex-grow: 1;
 	max-width: 100%;
 }
 
 .formula {
 	display: flex;
-	margin: .4em .8em;
+	margin: .4em 0;
 	padding: .4em .8em;
 	max-height: 12em;
 	border-radius: 4px;
@@ -71,6 +90,10 @@ body > div:first-of-type {
 	width: 20%;
 }
 
+.formula > div:not(.content) {
+	width: 15%;
+}
+
 .formula > div:not(:last-child) {
 	margin-right: 1em;
 }
@@ -79,10 +102,12 @@ body > div:first-of-type {
 	flex-grow: 1;
 }
 
-.formula input {
-	border: 2px solid #ca0000;
-	border-radius: 4px;
-	color: white;
-	font-weight: bold;
-	background-color: #ff0000e3;
+.formula > form:last-of-type {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.formula button {
+	background-color: #b94040;
 }
