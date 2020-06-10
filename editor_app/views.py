@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.validators import URLValidator
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.urls import resolve, Resolver404
 
 from editor_app.models import Formula
 
@@ -13,11 +15,14 @@ def index(request):
 	return render(request, 'index.html')
 
 
+def is_user_moderator(request):
+	return request.user.groups.filter(name='Moderatorzy').exists() or request.user.is_superuser
+
+
 @login_required
 def home(request):
-	is_user_moderator = request.user.groups.filter(name='Moderatorzy').exists() or request.user.is_superuser
 	formulas = Formula.objects.filter(Q(owner=request.user))
-	other_formulas = Formula.objects.filter(~Q(owner=request.user)) if is_user_moderator else []
+	other_formulas = Formula.objects.filter(~Q(owner=request.user)) if is_user_moderator(request) else []
 	return render(request, 'home.html', {'formulas': formulas, 'other_formulas': other_formulas})
 
 
@@ -49,13 +54,22 @@ def save(request):
 	return redirect('home')
 
 
+@login_required
 def remove(request, formula_id):
-	Formula.objects.get(id=formula_id).delete()
+	formula = Formula.objects.get(id=formula_id)
+	if formula and (formula.owner.id == request.user.id or is_user_moderator(request)):
+		Formula.objects.get(id=formula_id).delete()
 	return redirect('home')
 
 
 def auth(request):
-	redirect_path = request.POST['next'] if ('next' in request.POST and request.POST['next']) else 'home'
+	redirect_path = 'home'
+	if 'next' in request.POST and request.POST['next']:
+		try:
+			resolve(request.POST['next'])
+			redirect_path = request.POST['next']
+		except Resolver404:
+			pass
 
 	if not request.POST['username'] or not request.POST['password']:
 		messages.add_message(request, messages.ERROR, 'Wpisz dane logowania')
