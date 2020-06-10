@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import resolve, Resolver404

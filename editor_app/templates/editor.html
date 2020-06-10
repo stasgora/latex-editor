@@ -40,7 +40,7 @@
 				<input type="text" name="title" id="title" placeholder="Tytuł" value="{{ formula.title }}">
 			</section>
 			<section id="editor">
-				<textarea placeholder="Wprowadź wyrażenie" name="text" onkeyup="OnFormulaChanged()">{{ formula.text }}</textarea>
+				<textarea placeholder="Wprowadź wyrażenie. Wzory muszą znajdować się między znakami '$' na przykład: $\alpha$" name="text" onkeyup="OnFormulaChanged()">{{ formula.text }}</textarea>
 				<div>{{ formula.text }}</div>
 			</section>
 			<section id="navigation">
